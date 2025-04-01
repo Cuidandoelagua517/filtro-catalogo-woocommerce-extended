@@ -10,6 +10,11 @@
  * Requires PHP: 7.0
  * WC requires at least: 5.0.0
  * WC tested up to: 8.0.0
+ * Requires at least: 5.0
+ * Requires Plugins: woocommerce
+ * 
+ * This plugin is compatible with WooCommerce HPOS (Custom Order Tables).
+ * COT: true
  */
 
 // Si se accede directamente, salir
@@ -28,8 +33,24 @@ class WC_Template_Customizer_Extender {
         // Verificar que el plugin principal esté activo
         add_action('plugins_loaded', array($this, 'check_parent_plugin'));
         
+        // Declarar compatibilidad con HPOS para WooCommerce
+        add_action('before_woocommerce_init', array($this, 'declare_hpos_compatibility'));
+        
         // Inicializar el plugin si el principal está activo
         add_action('init', array($this, 'init'), 20);
+    }
+
+    /**
+     * Declarar compatibilidad con HPOS (Custom Order Tables)
+     */
+    public function declare_hpos_compatibility() {
+        if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
+            // Declarar compatibilidad con HPOS (Custom Order Tables)
+            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+            
+            // También declarar compatibilidad con bloques de carrito/checkout
+            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('cart_checkout_blocks', __FILE__, true);
+        }
     }
 
     /**
@@ -66,8 +87,43 @@ class WC_Template_Customizer_Extender {
         // Cargar traducciones
         load_plugin_textdomain('wc-template-extender', false, dirname(plugin_basename(__FILE__)) . '/languages');
         
+        // Incluir el archivo del widget personalizado
+        require_once plugin_dir_path(__FILE__) . 'includes/class-custom-filter-widget.php';
+        
+        // Registrar el widget
+        add_action('widgets_init', array($this, 'register_widgets'));
+        
         // Aplicar filtros
         $this->apply_filters();
+        
+        // Registrar estilos
+        add_action('wp_enqueue_scripts', array($this, 'register_styles'));
+    }
+    
+    /**
+     * Registrar widgets personalizados
+     */
+    public function register_widgets() {
+        register_widget('WC_Extender_Custom_Filter_Widget');
+    }
+    
+    /**
+     * Registrar estilos CSS
+     */
+    public function register_styles() {
+        // Solo en páginas de WooCommerce
+        if (!is_woocommerce() && !is_cart() && !is_checkout() && !is_account_page()) {
+            return;
+        }
+        
+        wp_register_style(
+            'wc-template-extender-styles',
+            plugin_dir_url(__FILE__) . 'assets/css/custom-styles.css',
+            array('wc-template-customizer-styles'),
+            '1.0.0'
+        );
+        
+        wp_enqueue_style('wc-template-extender-styles');
     }
 
     /**
