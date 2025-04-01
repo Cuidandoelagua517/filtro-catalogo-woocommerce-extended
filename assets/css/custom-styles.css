@@ -1,0 +1,322 @@
+/**
+ * Estilos personalizados para los filtros de WooCommerce Template Customizer
+ * 
+ * Estas reglas CSS se pueden incluir en el plugin complementario 
+ * o añadirse en la sección "Código CSS personalizado" del plugin principal.
+ */
+
+/* Estilos generales para filtros personalizados */
+.special-filter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.special-filter-list li {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.special-filter-list li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.special-filter-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.special-filter-list a:hover {
+  color: var(--primary-color, #0056b3);
+}
+
+.special-filter-list li.selected a {
+  color: var(--primary-color, #0056b3);
+  font-weight: 600;
+}
+
+.special-filter-list .count {
+  background-color: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  color: #666;
+}
+
+/* Filtro de marcas */
+.brand-filter a {
+  display: flex;
+  align-items: center;
+}
+
+.brand-filter a:before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.brand-filter li.selected a:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3Cpath d='M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z'/%3E%3C/svg%3E");
+  opacity: 1;
+  color: var(--primary-color, #0056b3);
+}
+
+/* Filtro de descuentos */
+.discount-filter a {
+  position: relative;
+  padding-left: 25px;
+}
+
+.discount-filter a:before {
+  content: '%';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: bold;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.discount-filter li.selected a:before {
+  background-color: var(--danger-color, #dc3545);
+  color: white;
+}
+
+/* Filtro de popularidad */
+.popularity-filter a {
+  position: relative;
+  padding-left: 25px;
+}
+
+.popularity-filter a:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.popularity-filter li:nth-child(1) a:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z'/%3E%3Cpath d='M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z'/%3E%3Cpath d='M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z'/%3E%3C/svg%3E");
+}
+
+.popularity-filter li:nth-child(2) a:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z'/%3E%3C/svg%3E");
+}
+
+.popularity-filter li:nth-child(3) a:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm2 .5v2a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5zm0 3v1a.5.5 0 0 0 .5.5h6.636a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2.5a.5.5 0 0 0-.5.5z'/%3E%3C/svg%3E");
+}
+
+.popularity-filter li:nth-child(4) a:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z'/%3E%3C/svg%3E");
+}
+
+.popularity-filter li.selected a:before {
+  opacity: 1;
+}
+
+/* Estilo para desplegables */
+.special-filter-select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.special-filter-select:focus {
+  outline: none;
+  border-color: var(--primary-color, #0056b3);
+  box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+}
+
+/* Estilo para botones */
+.special-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.special-filter-buttons a {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #333;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.special-filter-buttons a:hover {
+  background-color: #e9e9e9;
+  border-color: #ccc;
+}
+
+.special-filter-buttons a.selected {
+  background-color: var(--primary-color, #0056b3);
+  border-color: var(--primary-color, #0056b3);
+  color: white;
+}
+
+.special-filter-buttons .count {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 0.85em;
+}
+
+.special-filter-buttons a.selected .count {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Estilo para filtro personalizado en barra superior */
+.custom-filter-wrapper {
+  margin-bottom: 1.5rem;
+  padding: 10px 15px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+
+.woocommerce-custom-filter {
+  display: flex;
+  align-items: center;
+}
+
+.custom-filter-select {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  min-width: 200px;
+  font-size: 14px;
+}
+
+/* Estilos para clases de productos personalizadas */
+.productos ul.products li.producto-premium {
+  box-shadow: 0 0 0 2px var(--primary-color, #0056b3);
+  position: relative;
+}
+
+.productos ul.products li.producto-premium:before {
+  content: 'Premium';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--primary-color, #0056b3);
+  color: white;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 3px;
+  z-index: 2;
+}
+
+.productos ul.products li.producto-standard {
+  box-shadow: 0 0 0 1px var(--secondary-color, #4682B4);
+}
+
+/* Badge personalizado */
+.badge-premium {
+  background-color: #9b59b6 !important;
+  color: white !important;
+}
+
+.badge-free-shipping {
+  background-color: #3498db !important;
+  color: white !important;
+}
+
+/* Soporte para modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .special-filter-list a {
+    color: #f0f0f0;
+  }
+  
+  .special-filter-list .count {
+    background-color: #333;
+    color: #ccc;
+  }
+  
+  .special-filter-select,
+  .custom-filter-select {
+    background-color: #333;
+    border-color: #444;
+    color: #f0f0f0;
+  }
+  
+  .special-filter-buttons a {
+    background-color: #333;
+    border-color: #444;
+    color: #f0f0f0;
+  }
+  
+  .special-filter-buttons a:hover {
+    background-color: #444;
+  }
+  
+  .custom-filter-wrapper {
+    background-color: #222;
+    border-color: #333;
+  }
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .special-filter-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .special-filter-buttons a {
+    text-align: center;
+  }
+  
+  .woocommerce-custom-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .custom-filter-select {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
